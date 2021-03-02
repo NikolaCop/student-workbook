@@ -5,8 +5,8 @@ Virtuals are additional fields for a given model.
 
 
 <!-- When might you use a virtual property? -->
-You could use it to save names.
+You would use it when deciding what data a model should have. 
 
 
 <!-- How do you search by a virtual properties value? -->
-using the Get method.
+The virtuals get method is a function returning a the virtual value. You can do complex processing or just concatenate single document field values.
