@@ -13,11 +13,11 @@ Pointer type
 What are the Value-type data types? What differences do you notice from JavaScript?
 ``
 bool, byte, char, decimal, double, enum, float, int, long, sbyte, short, struct, uint, ulong, ushort.
-
+I noticed that there is no 'let', or 'var'. 
 ``
 
 
 In your own words how do Reference types get stored in memory? How does this differ from Value types?
 ``
-
+Reference Types store data in its memory using a numerical value. It then directly references the numerical value to gather the data.
 ``
