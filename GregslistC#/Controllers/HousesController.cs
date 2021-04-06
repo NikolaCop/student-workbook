@@ -42,6 +42,29 @@ namespace GregslistC_.Controllers
             }
         }
 
+        [HttpPut("{houseId}")]
+        public ActionResult<House> EditHouse(string houseId, House updatedHouse)
+        {
+            try
+            {
+                House houseFound = FakeDB.Houses.Find(c => c.Id == houseId);
+                if (houseFound == null)
+                {
+                    throw new System.Exception("That House does not exist");
+                }
+
+                houseFound.Name = updatedHouse.Name;
+                houseFound.Bedrooms = updatedHouse.Bedrooms;
+                houseFound.Price = updatedHouse.Price;
+                return Ok(updatedHouse);
+
+            }
+            catch (System.Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
 
         [HttpPost]
         public ActionResult<House> Create([FromBody] House newHouse)

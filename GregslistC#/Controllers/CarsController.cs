@@ -42,13 +42,22 @@ namespace GregslistC_.Controllers
             }
         }
 
-        [HttpPut]
-        public ActionResult<Car> EditCar(string id, Car UpdatedCar)
+        [HttpPut("{carId}")]
+        public ActionResult<Car> EditCar(string carId, Car updatedCar)
         {
             try
             {
-                FakeDB.Cars.Add(UpdatedCar);
-                return Ok(UpdatedCar);
+                Car carFound = FakeDB.Cars.Find(c => c.Id == carId);
+                if (carFound == null)
+                {
+                    throw new System.Exception("That Car does not exist");
+                }
+
+                carFound.Make = updatedCar.Make;
+                carFound.Model = updatedCar.Model;
+                carFound.Year = updatedCar.Year;
+                return Ok(updatedCar);
+
             }
             catch (System.Exception err)
             {

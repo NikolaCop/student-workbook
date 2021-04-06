@@ -43,6 +43,30 @@ namespace GregslistC_.Controllers
         }
 
 
+        [HttpPut("{jobId}")]
+        public ActionResult<Job> EditJob(string jobId, Job updatedJob)
+        {
+            try
+            {
+                Job jobFound = FakeDB.Jobs.Find(c => c.Id == jobId);
+                if (jobFound == null)
+                {
+                    throw new System.Exception("That Job does not exist");
+                }
+
+                jobFound.Title = updatedJob.Title;
+                jobFound.Description = updatedJob.Description;
+                jobFound.Rate = updatedJob.Rate;
+                return Ok(updatedJob);
+
+            }
+            catch (System.Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+
         [HttpPost]
         public ActionResult<Job> Create([FromBody] Job newJob)
         {
