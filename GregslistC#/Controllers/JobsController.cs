@@ -9,14 +9,14 @@ namespace GregslistC_.Controllers
 {
     [ApiController]
     [Route("[controller")]
-    public class CarsController : ControllerBase
+    public class JobsController : ControllerBase
     {
         [HttpGet()]
-        public ActionResult<IEnumerable<Car>> Get()
+        public ActionResult<IEnumerable<Job>> Get()
         {
             try
             {
-                return Ok(FakeDB.Cars);
+                return Ok(FakeDB.Jobs);
             }
             catch (System.Exception err)
             {
@@ -24,17 +24,17 @@ namespace GregslistC_.Controllers
             }
         }
 
-        [HttpGet("{carId}")]
-        public ActionResult<string> GetById(string carId)
+        [HttpGet("{jobId}")]
+        public ActionResult<string> GetById(string jobId)
         {
             try
             {
-                CarsController carFound = FakeDB.Cars.Find(carFound => carFound.Id == CarId);
-                if (carFound == null)
+                JobsController jobFound = FakeDB.Jobs.Find(jobFound => jobFound.Id == JobId);
+                if (jobFound == null)
                 {
-                    throw new System.Exception("Car does not exist");
+                    throw new System.Exception("Job does not exist");
                 }
-                return Ok(carFound);
+                return Ok(jobFound);
             }
             catch (System.Exception err)
             {
@@ -43,18 +43,18 @@ namespace GregslistC_.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<string> DeleteCar(string id)
+        public ActionResult<string> DeleteJob(string id)
         {
             try
             {
-                Car carToRemove = FakeDB.Cars.Find(c => c.id == id);
-                if (FakeDB.Cars.Remove(carToRemove))
+                Job jobToRemove = FakeDB.Jobs.Find(c => c.id == id);
+                if (FakeDB.Jobs.Remove(jobToRemove))
                 {
-                    return Ok("Car Delorted");
+                    return Ok("Job Delorted");
                 }
                 else
                 {
-                    throw new System.Exception("This Car Does Not Exist");
+                    throw new System.Exception("This Job Does Not Exist");
                 }
             }
             catch (System.Exception err)

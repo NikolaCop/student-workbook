@@ -9,14 +9,14 @@ namespace GregslistC_.Controllers
 {
     [ApiController]
     [Route("[controller")]
-    public class CarsController : ControllerBase
+    public class HousesController : ControllerBase
     {
         [HttpGet()]
-        public ActionResult<IEnumerable<Car>> Get()
+        public ActionResult<IEnumerable<House>> Get()
         {
             try
             {
-                return Ok(FakeDB.Cars);
+                return Ok(FakeDB.Houses);
             }
             catch (System.Exception err)
             {
@@ -24,17 +24,17 @@ namespace GregslistC_.Controllers
             }
         }
 
-        [HttpGet("{carId}")]
-        public ActionResult<string> GetById(string carId)
+        [HttpGet("{houseId}")]
+        public ActionResult<string> GetById(string houseId)
         {
             try
             {
-                CarsController carFound = FakeDB.Cars.Find(carFound => carFound.Id == CarId);
-                if (carFound == null)
+                HousesController houseFound = FakeDB.Houses.Find(houseFound => houseFound.Id == HouseId);
+                if (houseFound == null)
                 {
-                    throw new System.Exception("Car does not exist");
+                    throw new System.Exception("House does not exist");
                 }
-                return Ok(carFound);
+                return Ok(houseFound);
             }
             catch (System.Exception err)
             {
@@ -43,18 +43,18 @@ namespace GregslistC_.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<string> DeleteCar(string id)
+        public ActionResult<string> DeleteHouse(string id)
         {
             try
             {
-                Car carToRemove = FakeDB.Cars.Find(c => c.id == id);
-                if (FakeDB.Cars.Remove(carToRemove))
+                House houseToRemove = FakeDB.Houses.Find(c => c.id == id);
+                if (FakeDB.Houses.Remove(houseToRemove))
                 {
-                    return Ok("Car Delorted");
+                    return Ok("House Delorted");
                 }
                 else
                 {
-                    throw new System.Exception("This Car Does Not Exist");
+                    throw new System.Exception("This House Does Not Exist");
                 }
             }
             catch (System.Exception err)
