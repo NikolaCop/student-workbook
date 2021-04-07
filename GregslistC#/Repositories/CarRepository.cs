@@ -9,7 +9,6 @@ namespace GregslistC_.Repositories
 {
     public class CarRepository
     {
-
         public readonly IDbConnection _db;
 
         public CarRepository(IDbConnection db)
