@@ -5,6 +5,9 @@ namespace GregslistC_.Models
 {
     public class Car
     {
+        internal int id;
+        internal string carId;
+
         public Car(string make, string model, int year)
         {
             Make = make;

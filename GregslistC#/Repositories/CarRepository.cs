@@ -1,9 +1,11 @@
 
+using System;
 using System.Collections.Generic;
 using System.Data;
+using Dapper;
 using GregslistC_.Models;
 
-namespace car.Repositories
+namespace GregslistC_.Repositories
 {
     public class CarRepository
     {
@@ -15,13 +17,13 @@ namespace car.Repositories
             _db = db;
         }
 
-        internal IEnumerable<Car> Get()
+        public IEnumerable<Car> Get()
         {
             string sql = "SELECT * FROM cars;";
             return _db.Query<Car>(sql);
         }
 
-        internal Car Get(int Id)
+        internal Car Get(string Id)
         {
             string sql = "SELECT * FROM cars WHERE id = @Id;";
             return _db.QueryFirstOrDefault<Car>(sql, new { Id });
@@ -36,7 +38,7 @@ namespace car.Repositories
       (@Make, @Model, @Year);
       SELECT LAST_INSERT_ID();";
             int id = _db.ExecuteScalar<int>(sql, newCar);
-            newCar.Id = id;
+            newCar.id = id;
             return newCar;
         }
 
@@ -48,8 +50,8 @@ namespace car.Repositories
           make = @Make,
           model = @Model,
           year = @Year
-      WHERE id = @Id;
-      SELECT * FROM cars WHERE id = @Id;";
+          WHERE id = @Id;
+          SELECT * FROM cars WHERE id = @Id;";
             return _db.QueryFirstOrDefault<Car>(sql, carToEdit);
 
         }
@@ -59,6 +61,11 @@ namespace car.Repositories
             string sql = "DELETE FROM cars WHERE id = @id;";
             _db.Execute(sql, new { id });
             return;
+        }
+
+        internal void Delete(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -32,11 +32,11 @@ namespace GregslistC_.Controllers
         }
 
         [HttpGet("{carId}")] //Get By ID
-        public ActionResult<Car> GetCar(string carId)
+        public ActionResult<Car> GetById(string carId)
         {
             try
             {
-                return Ok(_service.Get(carId))
+                return Ok(_service.GetById(carId));
             }
             catch (System.Exception err)
             {
@@ -45,11 +45,11 @@ namespace GregslistC_.Controllers
         }
 
         [HttpPut("{carId}")] //EDIT
-        public ActionResult<Car> editCar(string carId, Car updatedCar)
+        public ActionResult<Car> editCar(string carId, Car editCar)
         {
             try
             {
-                editCar.carId = id;
+                editCar.carId = carId;
                 return Ok(_service.Edit(editCar));
 
             }

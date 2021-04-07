@@ -1,23 +1,28 @@
 
 using GregslistC_.Repositories;
 using GregslistC_.Models;
+using Dapper;
 using System;
+using System.Collections.Generic;
 
 namespace GregslistC_.Services
 {
     public class CarsService
     {
-        private readonly CarsRepository _repo;
+        private readonly CarRepository _repo;
 
-        public CarsService(CarsRepository repo)
+        public CarsService(CarRepository repo)
         {
             _repo = repo;
         }
-        internal IEnumberable<Car> Get()
+        //GET
+        public IEnumerable<Car> Get()
         {
             return _repo.Get();
         }
-        internal Car Get(int id)
+
+        //GET
+        internal Car GetById(string id)
         {
             Car car = _repo.Get(id);
             if (car == null)
@@ -27,13 +32,17 @@ namespace GregslistC_.Services
             return car;
         }
 
+
+        //CREATE/POST
         internal Car Create(Car newCar)
         {
-            return _repo.Create(newCar)
+            return _repo.Create(newCar);
         }
+
+        //EDIT/PUT
         internal Car Edit(Car editCar)
         {
-            Car original = Get(editCar.Id);
+            Car original = GetById(editCar.Id);
 
             original.Make = editCar.Make != null ? editCar.Make : original.Make;
             original.Model = editCar.Model != null ? editCar.Model : original.Model;
@@ -42,15 +51,12 @@ namespace GregslistC_.Services
             return _repo.Edit(original);
         }
 
-        internal Car Delete(int id)
+        //DELORT
+        internal Car Delete(string id)
         {
-            Car original = Get(id);
+            Car original = GetById(id);
             _repo.Delete(id);
             return original; ;
         }
-    }
-
-    internal interface IEnumberable<T>
-    {
     }
 }
