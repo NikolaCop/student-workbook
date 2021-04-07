@@ -42,11 +42,11 @@ namespace GregslistC_.Services
         //EDIT/PUT
         internal Car Edit(Car editCar)
         {
-            Car original = GetById(editCar.Id);
+            Car original = GetById(editCar.carId);
 
             original.Make = editCar.Make != null ? editCar.Make : original.Make;
             original.Model = editCar.Model != null ? editCar.Model : original.Model;
-            // original.Year = editCar.Year != null ? editCar.Year : original.Year;
+            original.Year = editCar.Year != null ? editCar.Year : original.Year;
 
             return _repo.Edit(original);
         }

@@ -16,19 +16,19 @@ namespace GregslistC_.Repositories
             _db = db;
         }
 
-        public IEnumerable<Car> Get()
+        public IEnumerable<Car> Get()               //GIT
         {
             string sql = "SELECT * FROM cars;";
             return _db.Query<Car>(sql);
         }
 
-        internal Car Get(string Id)
+        internal Car Get(string Id)                 //GITWITHID
         {
             string sql = "SELECT * FROM cars WHERE id = @Id;";
             return _db.QueryFirstOrDefault<Car>(sql, new { Id });
         }
 
-        internal Car Create(Car newCar)
+        internal Car Create(Car newCar)             //POST
         {
             string sql = @"
       INSERT INTO cars
@@ -41,7 +41,7 @@ namespace GregslistC_.Repositories
             return newCar;
         }
 
-        internal Car Edit(Car carToEdit)
+        internal Car Edit(Car carToEdit)          //EDIT
         {
             string sql = @"
       UPDATE cars
@@ -55,7 +55,7 @@ namespace GregslistC_.Repositories
 
         }
 
-        internal void Delete(int id)
+        internal void Delete(int id)            //DELORT
         {
             string sql = "DELETE FROM cars WHERE id = @id;";
             _db.Execute(sql, new { id });

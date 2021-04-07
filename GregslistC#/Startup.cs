@@ -36,11 +36,13 @@ namespace GregslistC_
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GregslistC_", Version = "v1" });
             });
-
+            //CARS
             services.AddTransient<CarsService>();
             services.AddTransient<CarRepository>();
+            //HOUSES
             services.AddTransient<HousesService>();
             services.AddTransient<HouseRepository>();
+            //JOBS
             services.AddTransient<JobsService>();
             services.AddTransient<JobRepository>();
         }
