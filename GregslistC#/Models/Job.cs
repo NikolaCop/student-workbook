@@ -5,6 +5,9 @@ namespace GregslistC_.Models
 {
     public class Job
     {
+        internal int id;
+        internal string jobId;
+
         public Job(string title, string description, int rate)
         {
             Title = title;

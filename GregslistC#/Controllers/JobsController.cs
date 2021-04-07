@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GregslistC_.db;
 using GregslistC_.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using GregslistC_.Services;
 
 namespace GregslistC_.Controllers
 {
@@ -10,12 +10,20 @@ namespace GregslistC_.Controllers
     [Route("api/[controller]")]
     public class JobsController : ControllerBase
     {
-        [HttpGet]
+        private readonly JobsService _service;
+
+        public JobsController(JobsService service)
+        {
+            _service = service;
+        }
+
+
+        [HttpGet] //Get
         public ActionResult<IEnumerable<Job>> Get()
         {
             try
             {
-                return Ok(FakeDB.Jobs);
+                return Ok(_service.Get());
             }
             catch (System.Exception err)
             {
@@ -23,18 +31,12 @@ namespace GregslistC_.Controllers
             }
         }
 
-        [HttpGet("{jobId}")]
-        public ActionResult<Job> GetJob(string jobId)
+        [HttpGet("{jobId}")] //Get By ID
+        public ActionResult<Job> GetById(string jobId)
         {
             try
             {
-                Job jobFound = FakeDB.Jobs.Find(c => c.Id == jobId);
-                if (jobFound == null)
-                {
-                    throw new System.Exception("That Job does not exist");
-                }
-                return Ok(jobFound);
-
+                return Ok(_service.GetById(jobId));
             }
             catch (System.Exception err)
             {
@@ -42,22 +44,13 @@ namespace GregslistC_.Controllers
             }
         }
 
-
-        [HttpPut("{jobId}")]
-        public ActionResult<Job> EditJob(string jobId, Job updatedJob)
+        [HttpPut("{jobId}")] //EDIT
+        public ActionResult<Job> editJob(string jobId, Job editJob)
         {
             try
             {
-                Job jobFound = FakeDB.Jobs.Find(c => c.Id == jobId);
-                if (jobFound == null)
-                {
-                    throw new System.Exception("That Job does not exist");
-                }
-
-                jobFound.Title = updatedJob.Title;
-                jobFound.Description = updatedJob.Description;
-                jobFound.Rate = updatedJob.Rate;
-                return Ok(updatedJob);
+                editJob.jobId = jobId;
+                return Ok(_service.Edit(editJob));
 
             }
             catch (System.Exception err)
@@ -67,13 +60,12 @@ namespace GregslistC_.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost] //Create
         public ActionResult<Job> Create([FromBody] Job newJob)
         {
             try
             {
-                FakeDB.Jobs.Add(newJob);
-                return Ok(newJob);
+                return Ok(_service.Create(newJob));
             }
             catch (System.Exception err)
             {
@@ -81,20 +73,12 @@ namespace GregslistC_.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //Delort
         public ActionResult<string> DeleteJob(string id)
         {
             try
             {
-                Job jobToRemove = FakeDB.Jobs.Find(c => c.Id == id);
-                if (FakeDB.Jobs.Remove(jobToRemove))
-                {
-                    return Ok("Job Delorted");
-                }
-                else
-                {
-                    throw new System.Exception("This Job Does Not Exist");
-                }
+                return Ok(_service.Delete(id));
             }
             catch (System.Exception err)
             {

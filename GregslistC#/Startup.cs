@@ -39,6 +39,10 @@ namespace GregslistC_
 
             services.AddTransient<CarsService>();
             services.AddTransient<CarRepository>();
+            services.AddTransient<HousesService>();
+            services.AddTransient<HouseRepository>();
+            services.AddTransient<JobsService>();
+            services.AddTransient<JobRepository>();
         }
 
         private IDbConnection CreateDbConnection()
