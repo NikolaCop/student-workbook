@@ -46,7 +46,7 @@ namespace GregslistC_.Services
 
             original.Make = editCar.Make != null ? editCar.Make : original.Make;
             original.Model = editCar.Model != null ? editCar.Model : original.Model;
-            original.Year = editCar.Year != null ? editCar.Year : original.Year;
+            // original.Year = editCar.Year != null ? editCar.Year : original.Year;
 
             return _repo.Edit(original);
         }
