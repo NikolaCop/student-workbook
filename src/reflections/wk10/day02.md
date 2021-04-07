@@ -13,3 +13,7 @@ How would you retrieve an item from a list? What method could you use?
 ``
 List.BinarySearch. This method uses an index based search. Similar to using the 0 based index on Arrays in JS.
 ``
+
+
+* * * AFTERNOON PROJECT * * * 
+https://github.com/NikolaCop/student-workbook/tree/main/GregslistC%23

@@ -32,6 +32,8 @@ namespace GregslistC_
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GregslistC_", Version = "v1" });
             });
+
+            services.AddTransient<CarsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
