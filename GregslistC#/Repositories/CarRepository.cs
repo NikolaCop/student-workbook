@@ -55,16 +55,11 @@ namespace GregslistC_.Repositories
 
         }
 
-        internal void Delete(int id)            //DELORT
+        internal void Delete(string id)            //DELORT
         {
-            string sql = "DELETE FROM cars WHERE id = @id;";
+            string sql = "DELETE FROM cars WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
             return;
-        }
-
-        internal void Delete(string id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
