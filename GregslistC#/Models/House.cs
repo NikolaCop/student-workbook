@@ -20,8 +20,8 @@ namespace GregslistC_.Models
         }
 
         public string Name { get; set; }
-        public int Bedrooms { get; set; }
-        public int Price { get; set; }
+        public int? Bedrooms { get; set; }
+        public int? Price { get; set; }
         public string Id { get; private set; } = Guid.NewGuid().ToString();
         public int id { get; internal set; }
     }
