@@ -1,7 +1,8 @@
 Read Dotnet WebAPI's > Welcome to SQL, and answer the following questions
 In a SQL table, what is the difference between information in a row and information in a column?
 ``
-
+Information in a row is information across the X axis of the table.
+Information in a Column is information along the Y axis of the table.
 ``
 
 Demonstrate the basic structure for creating a new table called characters with the values name, age, description as strings, and an int id.
