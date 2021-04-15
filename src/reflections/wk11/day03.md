@@ -1,14 +1,14 @@
 Read Dotnet WebAPI's > SQL Injection, and answer the following questions
 
-What is SQL injection?
+1) What is SQL injection?
 ``
 
 ``
-What are 3 methods SQL injection can be done by?
+2) What are 3 methods SQL injection can be done by?
 ``
 
 ``
-How can we detect and sanitize SQL injection attacks?
+3) How can we detect and sanitize SQL injection attacks?
 ``
 
 ``
